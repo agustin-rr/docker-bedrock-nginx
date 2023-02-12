@@ -1,0 +1,14 @@
+/**
+
+# Excludes all except the 'docker' directory...
+!/docker
+!/docker/**/*
+/docker/db/data
+/docker/logs
+/docker/nginx/ssl
+
+# and these files
+!/docker-compose.yml
+!/README.md
+!/.env.example
+!/.gitignore
