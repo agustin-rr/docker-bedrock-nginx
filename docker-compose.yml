@@ -10,6 +10,7 @@ services:
     cap_add:
       - SYS_NICE
     restart: unless-stopped
+    user: "${USER_ID}:${GROUP_ID}"
     environment:
       # - MYSQL_ROOT_HOST="%" # Apple M1 compatibility
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
