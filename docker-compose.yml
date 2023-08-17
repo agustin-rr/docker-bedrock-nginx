@@ -9,7 +9,7 @@ services:
     # Quit error message of mysql log: "mbind: Operation not permitted"
     cap_add:
       - SYS_NICE
-    restart: unless-stopped
+    restart: ${RESTART}
     user: "${USER_ID}:${GROUP_ID}"
     environment:
       # - MYSQL_ROOT_HOST="%" # Apple M1 compatibility
@@ -43,7 +43,7 @@ services:
         - version=${PHP_VERSION}
         - uid=${USER_ID}
         - gid=${GROUP_ID}
-    restart: unless-stopped
+    restart: ${RESTART}
     volumes:
       - ${WP_LOCAL_HOME}:/var/www/html
       - ${DOCKER_PATH}/wp/php/php.ini:/usr/local/etc/php/conf.d/php.ini
@@ -57,7 +57,7 @@ services:
       - wordpress
     image: nginx:1
     container_name: ${PROJECT_NAME}-nginx
-    restart: unless-stopped
+    restart: ${RESTART}
     environment:
       - "DOMAIN=${DOMAIN}"
     ports:
@@ -83,7 +83,7 @@ services:
       - db
     image: phpmyadmin:latest
     container_name: ${PROJECT_NAME}-phpmyadmin
-    restart: unless-stopped
+    restart: ${RESTART}
     environment:
       # Service name
       PMA_HOST: db
